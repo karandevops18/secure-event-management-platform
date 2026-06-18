@@ -1,0 +1,31 @@
+services:
+
+  postgres:
+    image: postgres:17
+    container_name: postgres-db
+
+    environment:
+      POSTGRES_DB: eventdb
+      POSTGRES_USER: eventadmin
+      POSTGRES_PASSWORD: StrongPassword123!
+
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./backend
+
+    container_name: secure-event-backend
+
+    environment:
+      DB_USER: eventadmin
+      DB_PASSWORD: StrongPassword123!
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: eventdb
+
+    ports:
+      - "5000:5000"
+
+    depends_on:
+      - postgres
