@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Secure Event Management Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Secure Event Management Platform</h1>
+
+        <div class="card">
+
+            <h2>Register</h2>
+
+            <input type="text" id="reg-name" placeholder="Name">
+
+            <input type="email" id="reg-email" placeholder="Email">
+
+            <input type="password" id="reg-password" placeholder="Password">
+
+            <button onclick="registerUser()">
+                Register
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Login</h2>
+
+            <input type="email" id="login-email" placeholder="Email">
+
+            <input type="password" id="login-password" placeholder="Password">
+
+            <button onclick="loginUser()">
+                Login
+            </button>
+
+        </div>
+
+        <div id="result"></div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
