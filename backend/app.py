@@ -1,3 +1,4 @@
+import time
 from flask import Flask
 from flask_cors import CORS
 
@@ -35,7 +36,28 @@ app.register_blueprint(events_bp, url_prefix="/api")
 app.register_blueprint(bookings_bp, url_prefix="/api")
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
+    max_retries = 10
+    retry_delay = 5
+
+    for attempt in range(max_retries):
+        try:
+            print(
+                f"Attempt {attempt + 1}: Connecting to database...",
+                flush=True
+            )
+
+            with app.app_context():
+                db.create_all()
+
+            print("Database connection successful!", flush=True)
+            break
+
+        except Exception as e:
+            print(f"Database not ready: {e}", flush=True)
+
+            if attempt < max_retries - 1:
+                time.sleep(retry_delay)
+            else:
+                raise
 
     app.run(host="0.0.0.0", port=5000)

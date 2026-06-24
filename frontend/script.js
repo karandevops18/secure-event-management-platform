@@ -1,4 +1,4 @@
-const API_URL = "http://192.168.29.148:5000/api";
+const API_URL = "http://192.168.1.8:5000/api";
 
 async function registerUser() {
 
